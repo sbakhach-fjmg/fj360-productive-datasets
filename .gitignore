@@ -1,0 +1,14 @@
+# environment
+.venv/
+__pycache__/
+*.pyc
+
+# data -- inputs, outputs and diagnostic exports contain real employee / deal data
+*.parquet
+*.csv
+*.xlsx
+*.tmp
+
+# run logs
+*.log
+logs/

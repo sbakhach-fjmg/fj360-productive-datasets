@@ -1,0 +1,21 @@
+[project]
+name = "salesforce-update"
+version = "0.1.0"
+description = "Builds the Salesforce / Advent sales & opportunity parquet datasets for Tableau, run from an Alteryx Run Command tool."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    # GROUP BY ALL and try_strptime need >= 0.8; verified on 1.5.5. Capped below 2 until tested.
+    "duckdb>=1.0,<2",
+    # format="mixed" in pd.to_datetime is pandas >= 2 only. pandas 3 changes default string
+    # dtypes and copy semantics -- capped until the outputs are verified against it.
+    "pandas>=2.0,<3",
+    "numpy",
+    # parquet engine for pd.read_parquet / DataFrame.to_parquet
+    "pyarrow",
+]
+
+[tool.uv]
+# Flat scripts run by path, not an installable package. diagnose_unmatched_credit.py loads
+# create_sf_datasets.py from its own directory, so the two must stay side by side.
+package = false
